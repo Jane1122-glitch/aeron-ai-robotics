@@ -1,0 +1,20 @@
+{
+  "name": "luma-ai-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.15"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "agents": "node src/agents/cli.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@google/genai": "^2.30.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "openai": "^5.20.0"
+  }
+}
