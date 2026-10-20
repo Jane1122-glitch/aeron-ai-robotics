@@ -135,3 +135,4 @@ The returned topic ID can be used with these routes:
 - `GET /api/blog/public/articles` and `GET /api/blog/public/articles/:slug` — read published articles without an admin token.
 
 Scheduled publication changes the article's state and makes it available through the public JSON endpoints; no external CMS, WordPress site, or social platform is connected. The daily automation publishes generated articles directly, so only run it where automatic publishing is intended. If generation says the key is missing, add `GEMINI_API_KEY=...` to `.env` and restart with `npm.cmd start`. Set `GEMINI_MODEL` to a model enabled for your Google AI Studio project. If the key is rejected, check it in Google AI Studio. Never paste the key into frontend files or a public repository.
+
