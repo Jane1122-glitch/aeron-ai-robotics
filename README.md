@@ -99,6 +99,8 @@ When the Node.js backend is running, its scheduler selects two new evergreen top
 
 The target time is **2:30 PM Asia/Karachi**. The scheduler calculates that wall-clock time explicitly and checks for missed work after a restart. The topic prompt is evergreen and does not claim live research: Tavily is not configured, and the system does not fabricate sources or citations.
 
+For maintenance or a first deployment, set `BLOG_SCHEDULER_ENABLED=false` in the server environment to start the API without starting scheduled automation. The default is enabled when this setting is omitted or set to `true`.
+
 The backend must remain running and have access to persistent SQLite storage. On a personal Windows computer, leave it awake with `npm.cmd start` running; sleep, shutdown, or a network outage can delay the run. For dependable daily publishing, use an always-on server or container with a persistent disk and process supervision (automatic restart). Do not run deployments against separate database files. The app's default host is local-only; do not expose it publicly without a secure deployment setup. Tests use temporary databases and mocked Gemini responses and do not publish to the saved site database or spend API credits.
 
 ### Start and test

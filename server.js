@@ -37,6 +37,7 @@ const blogDatabasePath = process.env.BLOG_DB_PATH || path.join(root, 'data', 'bl
 const blogDatabase = createBlogDatabase(blogDatabasePath);
 const blogProvider = createGeminiBlogProvider({ apiKey, model });
 const blogScheduler = createBlogScheduler({ database: blogDatabase, provider: blogProvider });
+const blogSchedulerEnabled = process.env.BLOG_SCHEDULER_ENABLED !== 'false';
 app.use('/api/blog', createBlogRouter({
   database: blogDatabase,
   provider: blogProvider,
@@ -112,7 +113,11 @@ const httpServer = app.listen(port, host, () => {
     console.log('Blog management API is disabled until BLOG_ADMIN_TOKEN is configured (32+ characters).');
   }
   console.log(`Blog database: ${blogDatabasePath}`);
-  blogScheduler.start();
+  if (blogSchedulerEnabled) {
+    blogScheduler.start();
+  } else {
+    console.log('Blog scheduler is disabled by BLOG_SCHEDULER_ENABLED=false.');
+  }
 });
 
 function shutdown() {
